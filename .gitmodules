@@ -1,0 +1,3 @@
+[submodule "Vrad_Fix"]
+	path = Vrad_Fix
+	url = git@github.com:Mrfunreal/HL2_Lights.rad_fix.git

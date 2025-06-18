@@ -1,0 +1,1 @@
+FOR /F "tokens=*" %%G IN ('dir /b %CD%\map_enhance_mod\maps\*.bsp') DO "%CD%\Half-Life 2\bin\vrad.exe" "%CD%\map_enhance_mod\maps\%%G" -lights "%CD%\Half-Life 2\hl2\HUGE_lights.rad" -both -TextureShadows -staticproplighting -StaticPropPolys -game "%CD%\Half-Life 2\hl2"
