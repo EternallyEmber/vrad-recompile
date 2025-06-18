@@ -6,7 +6,7 @@ on:
 jobs:
   bake-lm:
     runs-on: windows-latest
-    environment: tf2
+    environment: hl2
     steps:
 
       - name: Clone repo
@@ -20,11 +20,11 @@ jobs:
       - name: Setup Environment
         shell: cmd
         env:
-          USERNAME: ${{ secrets.STEAM_USERNAME }}
-          PASSWORD: ${{ secrets.STEAM_PASSWORD }}
+          STEAM_USERNAME: ${{ secrets.STEAM_USERNAME }}
+          STEAM_PASSWORD: ${{ secrets.STEAM_PASSWORD }}
         run: |
           cd vrad-recompile
-          %CD%\steamcmd\steamcmd.exe +login %USERNAME% %PASSWORD% +force_install_dir "%CD%\Half-Life 2" +app_update 220 +exit
+          %CD%\steamcmd\steamcmd.exe +login %STEAM_USERNAME% %STEAM_PASSWORD% +force_install_dir "%CD%\Half-Life 2" +app_update 220 +exit
           copy "%CD%\depends\Vrad_fix\HUGE_lights.rad" ".\Half-Life 2\hl2\"
           FOR /F "tokens=*" %%G IN ('dir /b "%CD%\Half-Life 2\hl2\maps\*.bsp"') DO copy "%CD%\Half-Life 2\hl2\maps\%%G" "%CD%\map_enhance_mod\maps\"
           copy "%CD%\depends\slammin\vrad.exe" "%CD%\Half-Life 2\bin\"
