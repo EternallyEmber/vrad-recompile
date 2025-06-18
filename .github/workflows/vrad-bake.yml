@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: ls
         shell: cmd
-        run: dir
+        run: dir ..
 
       - name: Setup Environment
         shell: cmd
