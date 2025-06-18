@@ -8,19 +8,19 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Setup Environment
-	    shell: cmd
+        shell: cmd
         env:
-  		  USERNAME: ${{ secrets.STEAM_USERNAME }}
-		  PASSWORD: ${{ secrets.STEAM_PASSWORD }}
-	    run: |
-		%CD%\setupenv.cmd
+          USERNAME: ${{ secrets.STEAM_USERNAME }}
+          PASSWORD: ${{ secrets.STEAM_PASSWORD }}
+        run: |
+          %CD%\setupenv.cmd
 
-	- name: Bake Lightmaps
-	  shell: cmd
-	  run: |
-      %CD%\lightmap.cmd
+      - name: Bake Lightmaps
+        shell: cmd
+        run: |
+          %CD%\lightmap.cmd
 
-	- uses: actions/upload-artifact@v4
-	  with:
-		name: Lighting Mod
-		path: map_enhance_mod
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Lighting Mod
+          path: map_enhance_mod
