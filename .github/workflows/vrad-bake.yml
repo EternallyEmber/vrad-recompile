@@ -35,4 +35,4 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: Lighting Mod
-          path: map_enhance_mod
+          path: vrad-recompile\map_enhance_mod
