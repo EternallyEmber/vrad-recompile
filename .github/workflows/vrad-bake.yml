@@ -16,21 +16,13 @@ jobs:
           owner: 'EternallyEmber'
           repository: 'vrad-recompile'
 
-      - name: cd Repo
-        shell: cmd
-        run: |
-          cd vrad-recompile
-
-      - name: dir
-        shell: cmd
-        run: dir
-
       - name: Setup Environment
         shell: cmd
         env:
           USERNAME: ${{ secrets.STEAM_USERNAME }}
           PASSWORD: ${{ secrets.STEAM_PASSWORD }}
         run: |
+          cd vrad-recompile
           %CD%\steamcmd\steamcmd.exe +login %USERNAME% %PASSWORD% +force_install_dir "..\Half-Life 2" +app_update 220 +exit
           copy "%CD%\depends\Vrad_fix\HUGE_lights.rad" ".\Half-Life 2\hl2\"
           FOR /F "tokens=*" %%G IN ('dir /b "%CD%\Half-Life 2\hl2\maps\*.bsp"') DO copy "%CD%\Half-Life 2\hl2\maps\%%G" "%CD%\map_enhance_mod\maps\"
@@ -40,6 +32,7 @@ jobs:
       - name: Bake Lightmaps
         shell: cmd
         run: |
+          cd vrad-recompile
           FOR /F "tokens=*" %%G IN ('dir /b %CD%\map_enhance_mod\maps\*.bsp') DO "%CD%\Half-Life 2\bin\vrad.exe" "%CD%\map_enhance_mod\maps\%%G" -lights "%CD%\Half-Life 2\hl2\HUGE_lights.rad" -both -TextureShadows -staticproplighting -StaticPropPolys -game "%CD%\Half-Life 2\hl2"
 
       - uses: actions/upload-artifact@v4
