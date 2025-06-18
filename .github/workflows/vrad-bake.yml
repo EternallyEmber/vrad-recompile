@@ -13,12 +13,12 @@ jobs:
           USERNAME: ${{ secrets.STEAM_USERNAME }}
           PASSWORD: ${{ secrets.STEAM_PASSWORD }}
         run: |
-          %CD%\setupenv.cmd
+          cmd /C %CD%\setupenv.cmd
 
       - name: Bake Lightmaps
         shell: cmd
         run: |
-          %CD%\lightmap.cmd
+          cmd /C %CD%\lightmap.cmd
 
       - uses: actions/upload-artifact@v4
         with:
