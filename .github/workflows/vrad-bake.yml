@@ -12,6 +12,7 @@ jobs:
         env:
           USERNAME: ${{ secrets.STEAM_USERNAME }}
           PASSWORD: ${{ secrets.STEAM_PASSWORD }}
+        run: ls
         run: |
           %CD%\steamcmd\steamcmd.exe +login %USERNAME% %PASSWORD% +force_install_dir "..\Half-Life 2" +app_update 220 +exit
           copy "%CD%\depends\Vrad_fix\HUGE_lights.rad" ".\Half-Life 2\hl2\"
