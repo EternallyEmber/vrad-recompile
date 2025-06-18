@@ -21,6 +21,10 @@ jobs:
         run: |
           cd vrad-recompile
 
+      - name: dir
+        shell: cmd
+        run: dir
+
       - name: Setup Environment
         shell: cmd
         env:
